@@ -16,7 +16,7 @@
 #include <linux/if_ether.h>
 int main(void) {
 
-
+	printf("");
 	printf("Uruchamiam odbieranie ramek Ethernet.\n"); /* prints */
 	//Utworzenie bufora dla odbieranych ramek Ethernet
 	char* buffer = (void*) malloc(ETH_FRAME_LEN);
