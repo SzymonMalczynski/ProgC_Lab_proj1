@@ -17,7 +17,7 @@
 int main(void) {
 
 	printf("");
-	printf("Uruchamiam odbieranie ramek Ethernet.\n"); /* prints */
+	printf("Uruchamiam odbieranie ramek Ethernet..\n"); /* prints */
 	//Utworzenie bufora dla odbieranych ramek Ethernet
 	char* buffer = (void*) malloc(ETH_FRAME_LEN);
 	//Otwarcie gniazda pozwalającego na odbiór wszystkich ramek Ethernet
@@ -35,7 +35,15 @@ int main(void) {
 	 if (iDataLen == -1)
 	 printf("Nie moge odebrac ramki: %s! \n", strerror(errno));
 	 else { //jeśli ramka odebrana poprawnie wyświetlenie jej zawartości
-	 printf("\nOdebrano ramke Ethernet o rozmiarze: %d [B]\n", iDataLen);
+		if ((*(buffer + 20) == 0x3A))
+		 					{
+		 						printf("Odebrano pakiet ICMPv6 o rozmiarze %d [B]: \n",iDataLen); }
+
+		else
+					{
+						printf("Odebrano inny pakiet o rozmiarze [B] %d \n", iDataLen);
+					}
+
 	 }
 	 }
 	return EXIT_SUCCESS;
